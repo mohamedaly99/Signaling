@@ -12,9 +12,11 @@ Future<String> signUp(String email, String password, String name,
     "nationality": nationality,
     "age": "$age"
   };
+  
 
+  print(reqBody);
   var response =
-      await http.post("http://192.168.1.9:5000/users/signup", body: reqBody);
+      await http.post("http://192.168.1.4:5000/users/signup", body: reqBody);
   if (response.statusCode == 200) {
     return "success";
   } else {

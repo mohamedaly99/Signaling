@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rentina/services/api/auth/signin.dart';
+import 'package:rentina/views/signin/widgets/get_location.dart';
 import 'package:rentina/views/signin/widgets/signuptext.dart';
 import 'package:rentina/views/signin/widgets/title.dart';
 import 'package:rentina/views/signup/signup.dart';
-import 'package:rentina/views/welcome/welcome.dart';
+
 
 
 class SignIn extends StatefulWidget {
@@ -76,7 +77,7 @@ class _SignInState extends State<SignIn> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => Welcome()))
+                                        builder: (context) =>GetLocationPage()))
                               }
                           });
                     },

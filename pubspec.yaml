@@ -14,7 +14,7 @@ description: A new Flutter project.
 version: 1.0.0+1
 
 environment:
-  sdk: ">=2.2.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -25,7 +25,8 @@ dependencies:
   cupertino_icons: ^0.1.2
   flutter_country_picker: ^0.1.4
   http: ^0.12.0+2
-
+  provider:
+  location: '^2.3.5'
   google_maps_flutter: ^0.5.21+6
 
 dev_dependencies:
