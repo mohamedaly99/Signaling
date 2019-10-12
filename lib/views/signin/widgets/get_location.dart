@@ -1,10 +1,8 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:location/location.dart';
-import 'package:provider/provider.dart';
-import 'package:rentina/services/user_location.dart';
-import 'package:rentina/views/map/map.dart';
+import 'package:rentina/model/locationmodel.dart';
+import 'package:rentina/views/signin/widgets/carItem.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 class GetLocationPage extends StatefulWidget {
   @override
@@ -12,46 +10,39 @@ class GetLocationPage extends StatefulWidget {
 }
 
 class _GetLocationPageState extends State<GetLocationPage> {
-
   var location = new Location();
 
   LocationData userLocation;
-
+  @override
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            userLocation == null
-                ? CircularProgressIndicator()
-                : Text("Location:" +
-                    userLocation.latitude.toString() +
-                    " " +
-                    userLocation.longitude.toString()),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: RaisedButton(
-                onPressed: () {
-                  _getLocation().then((value) {
-                    Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => MapSample(lat: value.latitude,lang: value.longitude,)));
-                  });
-                },
-                color: Colors.blue,
-                child: Text("Get Location", style: TextStyle(color: Colors.white),),
-              ),
+    return ScopedModelDescendant<LocationModel>(
+      builder: (context, child, model) {
+        
+        return Scaffold(
+          body: Container(
+            child: ListView.builder(
+              padding: const EdgeInsets.all(8),
+              itemCount: model.carList.length,
+              itemBuilder: (context, index) {
+                return CarItem(
+                    model.carList[index]["distance"].toString(),
+                    model.carList[index]["fuelLevel"].toString(),
+                    model.carList[index]["imagePath"].toString(),
+                    model.carList[index]["modelName"].toString(),
+                    model.carList[index]["productionYear"].toString(),
+                    model.carList[index]["longtiude"].toString(),
+                    model.carList[index]["latitude"].toString());
+              },
             ),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 
   Future<LocationData> _getLocation() async {
-    LocationData currentLocation ;
+    LocationData currentLocation;
     try {
       currentLocation = await location.getLocation();
     } catch (e) {

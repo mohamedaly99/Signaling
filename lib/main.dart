@@ -2,10 +2,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:rentina/model/locationmodel.dart';
 import 'package:rentina/services/user_location.dart';
 import 'package:rentina/views/map/map.dart';
 import 'package:rentina/views/signin/signin.dart';
 import 'package:rentina/views/signin/widgets/get_location.dart';
+import 'package:scoped_model/scoped_model.dart';
 
 import 'services/loaction_services.dart';
 
@@ -30,10 +32,13 @@ class Main extends StatelessWidget {
 
 
 
-    return MaterialApp(
+    return ScopedModel<LocationModel>( 
+      model: LocationModel(),
+    child:MaterialApp(
       theme: ThemeData(
           primaryColor: Color(0xff416aa6), accentColor: Color(0xff416aa6)),
       home: SignIn(),
+    )
     );
   }
 }
