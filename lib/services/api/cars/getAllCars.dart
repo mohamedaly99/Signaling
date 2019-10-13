@@ -10,7 +10,7 @@ Future<List<dynamic>> getAllCars (double lat, double long ) async {
    Map<String,String> headers = {"Content-type":"application/json"};
   var bodyready = jsonEncode(body);
   var response =
-      await http.post("http://192.168.1.3:5000/cars/getallcars",body: bodyready,headers: headers);
+      await http.post("http://192.168.1.7:5000/cars/getallcars",body: bodyready,headers: headers);
   var resBody = response.body;
    print(lat);
    print(long);

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:rentina/views/map/carsOnMap.dart';
 import 'package:rentina/views/map/map.dart';
 
 class CarItem extends StatelessWidget {
@@ -16,22 +17,21 @@ class CarItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
+    print("HHHHHHHHHHHHHHHHHH ${double.parse(latitude)}");
+    print(double.parse(longtiude));
     // TODO: implement build
     return GestureDetector(
-
-      onTap: (){
-
-         Navigator.push(
-               context,
-              MaterialPageRoute(
-              builder: (context) =>   
-              MapSample(lat:double.parse(latitude),lang:double.parse(longtiude))
-              ),
-         );
-         
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => CarsOnMap(
+                  carLat: double.parse(latitude),
+                  carLang: double.parse(longtiude),
+                  carName: modelName,)),
+        );
       },
-          child: Container(
+      child: Container(
         // color: Colors.blueAccent,
         width: MediaQuery.of(context).size.width * 0.9,
         height: MediaQuery.of(context).size.height * 0.15,
@@ -50,58 +50,62 @@ class CarItem extends StatelessWidget {
                       children: <Widget>[
                         Row(
                           children: <Widget>[
-                            Spacer(flex:1,),
-                             Text(
-                                modelName,
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold,
-                                    color: Colors.white),
-                              ),
-                           Spacer(flex:1,),
+                            Spacer(
+                              flex: 1,
+                            ),
+                            Text(
+                              modelName,
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white),
+                            ),
+                            Spacer(
+                              flex: 1,
+                            ),
                           ],
                         ),
                         Row(
                           children: <Widget>[
-                            Spacer(flex: 2,)
-                            ,
-                             Text(
-                                productionYear,
-                                style:
-                                    TextStyle(fontSize: 12, color: Colors.white),
-                              ),
-                            Spacer(flex: 2,)
-                            ,
+                            Spacer(
+                              flex: 2,
+                            ),
+                            Text(
+                              productionYear,
+                              style:
+                                  TextStyle(fontSize: 12, color: Colors.white),
+                            ),
+                            Spacer(
+                              flex: 2,
+                            ),
                           ],
                         ),
                         Row(
                           children: <Widget>[
-                            Spacer(flex: 2,)
-                            ,
+                            Spacer(
+                              flex: 2,
+                            ),
                             Icon(Icons.ev_station),
                             Text(fuelLevel,
-                                style:
-                                    TextStyle(fontSize: 12, color: Colors.white))
-                                    ,
-                                    Spacer(flex: 2,)
-                            ,
+                                style: TextStyle(
+                                    fontSize: 12, color: Colors.white)),
+                            Spacer(
+                              flex: 2,
+                            ),
                           ],
-                        )
-
-                        ,
-
+                        ),
                         Row(
                           children: <Widget>[
-                            Spacer(flex: 1,)
-                            ,
-                            Icon(Icons.location_on)
-                            ,
+                            Spacer(
+                              flex: 1,
+                            ),
+                            Icon(Icons.location_on),
                             Text(distance,
-                                style:
-                                    TextStyle(fontSize: 12, color: Colors.white))
-                                    ,
-                                     Spacer(flex: 1,)
-                            ,
+                                style: TextStyle(
+                                    fontSize: 12, color: Colors.white)),
+                            Spacer(
+                              flex: 1,
+                            ),
                           ],
                         )
                       ],

@@ -7,16 +7,18 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 class CarsOnMap extends StatefulWidget {
   final double carLat;
   final double carLang;
-  CarsOnMap({this.carLat, this.carLang});
+  final String carName;
+  CarsOnMap({this.carLat, this.carLang, this.carName});
   @override
-  State<CarsOnMap> createState() => CarsOnMapState(carLat, carLang);
+  State<CarsOnMap> createState() => CarsOnMapState(carLat, carLang, carName);
 }
 
 class CarsOnMapState extends State<CarsOnMap> {
   Completer<GoogleMapController> _controller = Completer();
-  static double carLat;
-  static double carLang;
-  CarsOnMapState(carLat, carLang);
+  double carLat;
+  double carLang;
+  String carName;
+  CarsOnMapState(this.carLat, this.carLang, this.carName);
 
   // static final CameraPosition _kGooglePlex = CameraPosition(
   //   target: LatLng(carlat,-122.085749655962),
@@ -25,6 +27,14 @@ class CarsOnMapState extends State<CarsOnMap> {
 
   @override
   Widget build(BuildContext context) {
+    print(carLang);
+    Marker carsMarker = Marker(
+      markerId: MarkerId("cars"),
+      position: LatLng(carLat, carLang),
+      infoWindow: InfoWindow(title: carName),
+      icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueMagenta),
+    );
+
     return new Scaffold(
       body: GoogleMap(
         myLocationEnabled: true,
@@ -41,10 +51,10 @@ class CarsOnMapState extends State<CarsOnMap> {
     );
   }
 
-  Marker carsMarker = Marker(
-    markerId: MarkerId("cars"),
-    position: LatLng(carLat, carLang),
-    infoWindow: InfoWindow(title: "avalable cars"),
-    icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueMagenta),
-  );
+  // Marker carsMarker = Marker(
+  //   markerId: MarkerId("cars"),
+  //   position: LatLng(carLat, carLang),
+  //   infoWindow: InfoWindow(title: "avalable cars"),
+  //   icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueMagenta),
+  // );
 }
