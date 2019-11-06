@@ -4,6 +4,8 @@ import 'package:scoped_model/scoped_model.dart';
 class LocationModel extends Model{
   List<dynamic> carList = List<dynamic>();
 
+  String id = "";
+
   addCarList(Car car){
     carList.add(car);
     notifyListeners();
@@ -12,4 +14,12 @@ class LocationModel extends Model{
     this.carList = carList;
     notifyListeners();
   }
+
+  setUserId(String userId){
+    this.id =userId ;
+   
+  
+    notifyListeners();
+  }
+
 }

@@ -25,7 +25,7 @@ class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     return ScopedModelDescendant<LocationModel>(
-      builder: (context, child, model) {
+      builder: (context, child, locationModel) {
         return Scaffold(
           body: Form(
             key: formKey,
@@ -83,21 +83,28 @@ class _SignInState extends State<SignIn> {
                                 else
                                   {
                                     getLocation().then((myLocation) => {
-                                     
+                                      
                                           getAllCars(myLocation.latitude,myLocation.longitude)
                                               .then((carsList) async => {
                                                     getLocation().then(
                                                         (myLocation) => {
                                                         
-                                                              model.setCarList(
+                                                              locationModel.setCarList(
                                                                   carsList)
+                                                                  ,
+                                                                  locationModel.setUserId(user["id"].toString()),
+                                                                  
                                                             }),
-                                                
+                                                            
+                                                   
                                                     Navigator.push(
                                                         context,
                                                         MaterialPageRoute(
                                                             builder: (context) =>
-                                                                GetLocationPage()))
+                                                                GetLocationPage()
+                                                                
+                                                                )
+                                                                )
                                                   }),
                                         }),
                                   }

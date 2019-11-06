@@ -16,7 +16,7 @@ Future<String> signUp(String email, String password, String name,
 
   print(reqBody);
   var response =
-      await http.post("http://172.20.10.3:5000/users/signup", body: reqBody);
+      await http.post("http://192.168.1.6:5000/users/signup", body: reqBody);
   if (response.statusCode == 200) {
     return "success";
   } else {

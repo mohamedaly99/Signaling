@@ -5,6 +5,7 @@ import 'package:rentina/views/signin/widgets/carItem.dart';
 import 'package:scoped_model/scoped_model.dart';
 
 class GetLocationPage extends StatefulWidget {
+  
   @override
   _GetLocationPageState createState() => _GetLocationPageState();
 }
@@ -13,9 +14,11 @@ class _GetLocationPageState extends State<GetLocationPage> {
   var location = new Location();
 
   LocationData userLocation;
-  @override
+  
   @override
   Widget build(BuildContext context) {
+
+    
     return ScopedModelDescendant<LocationModel>(
       builder: (context, child, model) {
         
@@ -25,7 +28,10 @@ class _GetLocationPageState extends State<GetLocationPage> {
               padding: const EdgeInsets.all(8),
               itemCount: model.carList.length,
               itemBuilder: (context, index) {
+                
                 return CarItem(
+                    model.id,
+                    model.carList[index]["id"].toString(),
                     model.carList[index]["distance"].toString(),
                     model.carList[index]["fuelLevel"].toString(),
                     model.carList[index]["imagePath"].toString(),
